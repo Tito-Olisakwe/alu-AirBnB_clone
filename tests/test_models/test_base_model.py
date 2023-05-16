@@ -13,7 +13,8 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Test the __str__ method of the BaseModel class"""
         bm = BaseModel()
-        self.assertIsInstance(bm.__str__(), str)
+        expected_outcome = "[{}] ({}) {}".format(bm.__class__.__name__, bm.id, bm.__dict__)
+        self.assertIsInstance(str(bm), expected_outcome)
 
     def test_save(self):
         """Test the save method of the BaseModel class"""
