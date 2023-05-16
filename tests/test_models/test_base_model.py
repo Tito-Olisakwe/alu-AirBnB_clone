@@ -14,7 +14,7 @@ class TestBaseModel(unittest.TestCase):
         """Test the __str__ method of the BaseModel class"""
         bm = BaseModel()
         expected_outcome = "[{}] ({}) {}".format(bm.__class__.__name__, bm.id, bm.__dict__)
-        self.assertIsInstance(str(bm), expected_outcome)
+        self.assertEqual(str(bm), expected_outcome)
 
     def test_save(self):
         """Test the save method of the BaseModel class"""
