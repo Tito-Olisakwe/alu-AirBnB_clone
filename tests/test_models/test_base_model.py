@@ -33,4 +33,18 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(bm_dict["created_at"], bm.created_at.isoformat())
         if bm.updated_at is not None:
             self.assertEqual(bm_dict['updated_at'], bm.updated_at.isoformat())
-            
+
+    def test_from_dict(self):
+        """Test creating a BaseModel instance from a dictionary"""
+        bm = BaseModel()
+        bm_dict = bm.to_dict()
+        new_bm = BaseModel(**bm_dict)
+        self.assertEqual(new_bm.id, bm.id)
+        self.assertEqual(new_bm.created_at, bm.created_at)
+        self.assertEqual(new_bm.updated_at, bm.updated_at)
+        self.assertEqual(new_bm.__class__.__name__, bm.__class__.__name__)
+        self.assertEqual(new_bm.__dict__, bm.__dict__)
+        self.assertIsNot(new_bm, bm)  # Check that they are different instances
+
+if __name__ == '__main__':
+    unittest.main()
