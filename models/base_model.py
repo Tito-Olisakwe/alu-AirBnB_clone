@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from datetime import datetime
 import uuid
+from models import storage
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
@@ -15,12 +16,18 @@ class BaseModel:
                 setattr(self, key, value)
                 if key == 'created_at' or key == 'updated_at':
                     setattr(self, key, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+            
+        # If it's a new instance, add a call to the method new(self) on storage
+        if not kwargs:
+            storage.new(self)
 
     def __str__(self):
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
   
     def save(self):
         self.updated_at = datetime.now()
+        # Call the save(self) method for the storage instance
+        storage.save()
    
     def to_dict(self):
         obj_dict = self.__dict__.copy()
