@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import json
+import os
 
 """This module is responsible for managing the serialization,
 and deserialization of objects to and from a JSON file."""
@@ -27,10 +28,13 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects."""
-        try:
-            with open(self.__file_path, 'r') as file:
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, "r") as file:
                 data = json.load(file)
                 for key, value in data.items():
-                    self.__objects[key] = value
-        except FileNotFoundError:
-            pass
+                    class_name, obj_id = key.split(".")
+                    obj_dict = value
+                    # Create an instance of the object using eval()
+                    cls = eval(class_name)
+                    obj = cls(**obj_dict)
+                    self.__objects[key] = obj
