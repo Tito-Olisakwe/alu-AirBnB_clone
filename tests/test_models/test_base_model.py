@@ -1,5 +1,6 @@
 import unittest
 from models.base_model import BaseModel
+import time
 from datetime import datetime
 
 class TestBaseModel(unittest.TestCase):
@@ -19,9 +20,10 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """Test the save method of the BaseModel class"""
         bm = BaseModel()
-        initial_updated_at = bm.updated_at
+        time.sleep(1)
         bm.save()
-        self.assertNotEqual(initial_updated_at, bm.updated_at)
+        self.assertNotEqual(bm.updated_at, bm.created_at)
+        self.assertTrue(bm.updated_at > bm.created_at)
 
     def test_to_dict(self):
         """Test the to_dict method of the BaseModel class"""
