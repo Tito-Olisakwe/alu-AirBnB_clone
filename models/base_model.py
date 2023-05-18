@@ -15,6 +15,7 @@ class BaseModel:
                     continue
                 setattr(self, key, value)
                 if key == 'created_at' or key == 'updated_at':
+                     # Convert the string value to a datetime object
                     setattr(self, key, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
             
         # If it's a new instance, add a call to the method new(self) on storage
@@ -36,5 +37,5 @@ class BaseModel:
         if self.updated_at is not None:
             obj_dict["updated_at"] = self.updated_at.isoformat()
         else:
-            obj_dict.pop("updated_at", None)
+            obj_dict.pop("updated_at", None) # Remove 'updated_at' key if it's None
         return obj_dict
