@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.classes.keys():
+        if class_name not in storage.all().keys():
             print("** class doesn't exist **")
             return
 
@@ -65,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.classes.keys():
+        if class_name not in storage.all().keys():
             print("** class doesn't exist **")
             return
 
@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
             instances = list(storage.all().values())
         else:
             class_name = args[0]
-            if class_name not in storage.classes.keys():
+            if class_name not in storage.all().keys():
                 print("** class doesn't exist **")
                 return
             instances = [v for k, v in storage.all().items() if class_name in k]
@@ -106,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.classes.keys():
+        if class_name not in storage.all().keys():
             print("** class doesn't exist **")
             return
 
