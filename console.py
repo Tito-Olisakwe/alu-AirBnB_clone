@@ -41,11 +41,11 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.all().keys():
+        if class_name not in storage.classes.keys():
             print("** class doesn't exist **")
             return
 
-        if len(args) < 2 or not args[1]:
+        if len(args) < 2 or not args[1].strip():
             print("** instance id missing **")
             return
 
@@ -65,11 +65,11 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.all().keys():
+        if class_name not in storage.classes.keys():
             print("** class doesn't exist **")
             return
 
-        if len(args) < 2 or not args[1]:
+        if len(args) < 2 or not args[1].strip():
             print("** instance id missing **")
             return
 
@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
             instances = list(storage.all().values())
         else:
             class_name = args[0]
-            if class_name not in storage.all().keys():
+            if class_name not in storage.classes.keys():
                 print("** class doesn't exist **")
                 return
             instances = [v for k, v in storage.all().items() if class_name in k]
@@ -106,11 +106,11 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.all().keys():
+        if class_name not in storage.classes.keys():
             print("** class doesn't exist **")
             return
 
-        if len(args) < 2 or not args[1]:
+        if len(args) < 2 or not args[1].strip():
             print("** instance id missing **")
             return
 
@@ -120,11 +120,11 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-        if len(args) < 3 or not args[2]:
+        if len(args) < 3 or not args[2].strip():
             print("** attribute name missing **")
             return
 
-        if len(args) < 4:
+        if len(args) < 4 or not args[3].strip():
             print("** value missing **")
             return
 
