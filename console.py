@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"Entry point of the command interpreter"
 import cmd
 
 class HBNBCommand(cmd.Cmd):
