@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 "Entry point of the command interpreter"
 import cmd
-import shlex
-import models
 from models.base_model import BaseModel
 from models import storage
 
@@ -101,28 +99,40 @@ class HBNBCommand(cmd.Cmd):
         print([str(instance) for instance in instances])
 
     def do_update(self, arg):
-        """
-        Updates an instance based on the class name and id
-        by adding or updating attribute
-        """
-        args = shlex.split(arg)
-        if not arg:
+        """Updates an instance based on the class name and id"""
+        args = arg.split()
+        if not args:
             print("** class name missing **")
-        elif args[0] not in models.classes:
+            return
+
+        class_name = args[0]
+        if class_name not in storage.all():
             print("** class doesn't exist **")
-        elif len(args) < 2:
+            return
+
+        if len(args) < 2 or not args[1].strip():
             print("** instance id missing **")
-        elif len(args) < 3:
+            return
+
+        instance_id = args[1]
+        key = class_name + '.' + instance_id
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+
+        if len(args) < 3 or not args[2].strip():
             print("** attribute name missing **")
-        elif len(args) < 4:
+            return
+
+        if len(args) < 4 or not args[3].strip():
             print("** value missing **")
-        else:
-            key = args[0] + "." + args[1]
-            if key not in models.storage.all():
-                print("** no instance found **")
-            else:
-                setattr(models.storage.all()[key], args[2], args[3])
-                models.storage.save()
+            return
+
+        attribute_name = args[2]
+        attribute_value = args[3].strip('"')
+        obj = storage.all()[key]
+        setattr(obj, attribute_name, attribute_value)
+        obj.save()
 
 
 if __name__ == '__main__':
