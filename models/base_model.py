@@ -2,7 +2,6 @@
 from datetime import datetime
 import uuid
 import models
-from models import storage
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
@@ -21,7 +20,7 @@ class BaseModel:
             
         # If it's a new instance, add a call to the method new(self) on storage
         if not kwargs:
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)

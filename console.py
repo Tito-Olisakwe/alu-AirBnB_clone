@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 "Entry point of the command interpreter"
 import cmd
-from models.base_model import BaseModel
-from models import storage
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -36,26 +35,21 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Prints the string representation of an instance"""
         args = arg.split()
-        if not args:
+        if not arg:
             print("** class name missing **")
-            return
-
-        class_name = args[0]
-        if class_name not in storage.all():
+        elif args[0] not in models.classes:
             print("** class doesn't exist **")
-            return
-
-        if len(args) < 2 or not args[1].strip():
+        elif len(args) < 2:
             print("** instance id missing **")
-            return
+        else:
+            key = args[0] + "." + args[1]
+            if key not in models.storage.all():
+                print("** no instance found **")
+            else:
+                print(models.storage.all()[key])
 
-        instance_id = args[1]
-        key = class_name + '.' + instance_id
-        if key not in storage.all():
-            print("** no instance found **")
-            return
 
-        print(storage.all()[key])
+
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
@@ -65,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.all():
+        if class_name not in models.classes:
             print("** class doesn't exist **")
             return
 
@@ -75,12 +69,12 @@ class HBNBCommand(cmd.Cmd):
 
         instance_id = args[1]
         key = class_name + '.' + instance_id
-        if key not in storage.all():
+        if key not in models.storage.all():
             print("** no instance found **")
             return
 
-        del storage.all()[key]
-        storage.save()
+        del models.storage.all()[key]
+        models.storage.save()
 
     def do_all(self, arg):
         """Prints all string representations of all instances"""
@@ -88,13 +82,13 @@ class HBNBCommand(cmd.Cmd):
         instances = []
 
         if not args:
-            instances = list(storage.all().values())
+            instances = list(models.storage.all().values())
         else:
             class_name = args[0]
-            if class_name not in storage.all():
+            if class_name not in models.storage.all():
                 print("** class doesn't exist **")
                 return
-            instances = [v for k, v in storage.all().items() if class_name in k]
+            instances = [v for k, v in models.storage.all().items() if class_name in k]
 
         print([str(instance) for instance in instances])
 
@@ -106,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in storage.all():
+        if class_name not in models.classes:
             print("** class doesn't exist **")
             return
 
@@ -116,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
 
         instance_id = args[1]
         key = class_name + '.' + instance_id
-        if key not in storage.all():
+        if key not in models.storage.all():
             print("** no instance found **")
             return
 
@@ -130,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
 
         attribute_name = args[2]
         attribute_value = args[3].strip('"')
-        obj = storage.all()[key]
+        obj = models.storage.all()[key]
         setattr(obj, attribute_name, attribute_value)
         obj.save()
 
