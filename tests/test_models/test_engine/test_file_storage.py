@@ -45,6 +45,14 @@ class TestFileStorage(unittest.TestCase):
         self.storage.save()
         
         self.assertTrue(os.path.exists(self.file_path))
+
+    def test_reload(self):
+        bm = BaseModel()
+        models.storage.new(bm)
+        models.storage.save()
+        models.storage.reload()
+        objs = FileStorage._FileStorage__objects
+        self.assertIn("BaseModel." + bm.id, objs)
     
     def test_reload_file_exists(self):
         # Create a file with invalid JSON data
