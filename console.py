@@ -2,6 +2,7 @@
 "Entry point of the command interpreter"
 import cmd
 import models
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,13 +21,16 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it, and prints the id"""
+        """Creates a new instance of BaseModel, User, saves it, and prints the id"""
         if not arg:
             print("** class name missing **")
-        elif arg not in models.classes:
+        elif arg not in models.classes and arg != "User":
             print("** class doesn't exist **")
         else:
-            new_instance = models.classes[arg]()
+            if arg == "User":
+                new_instance = User()
+            else:
+                new_instance = models.classes[arg]()
             new_instance.save()
             print(new_instance.id)
 
@@ -35,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in models.classes:
+        elif args[0] not in models.classes and args[0] != "User":
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
@@ -54,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in models.classes:
+        elif args[0] not in models.classes and args[0] != "User":
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
@@ -72,18 +76,22 @@ class HBNBCommand(cmd.Cmd):
 
         if not arg:
             print([str(value) for value in models.storage.all().values()])
-        elif args[0] not in models.classes:
+        elif args[0] not in models.classes and args[0] != "User":
             print("** class doesn't exist **")
         else:
+            if args[0] == "User":
+                class_name = User.__name__
+            else:
+                class_name = args[0]
             print([str(value) for key, value in models.storage.all().items()
-                   if key.split('.')[0] == args[0]])
+                   if key.split('.')[0] == class_name])
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in models.classes:
+        elif args[0] not in models.classes and args[0] != "User":
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
