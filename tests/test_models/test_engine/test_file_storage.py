@@ -64,9 +64,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(dict, type(all_objects))
     
     def test_reload_file_not_exists(self):
-        self.storage.reload()
-        all_objects = self.storage.all()
-        self.assertEqual(dict, type(all_objects))
+        self.assertRaises(FileNotFoundError, models.storage.reload())
 
 if __name__ == "__main__":
     unittest.main()
