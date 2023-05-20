@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os
+from models.user import User
 
 
 """This module is responsible for managing the serialization,
@@ -23,7 +24,10 @@ class FileStorage:
         """serializez __objects to the JSON file (path: __file_path)."""
         data = {}
         for key, value in self.__objects.items():
-            data[key] = value.to_dict()
+            if isinstance(value, User):
+                data[key] = value.to_dict()
+            else:
+                data[key] = value.__dict__()
 
         with open(self.__file_path, 'w') as file:
             json.dump(data, file)
@@ -38,6 +42,9 @@ class FileStorage:
                     if class_name == "BaseModel":
                         from models.base_model import BaseModel
                         cls = BaseModel
+                    
+                    elif class_name == "User":
+                        cls = User
                     else:
                         cls = globals()[class_name]
                     obj = cls(**value)
