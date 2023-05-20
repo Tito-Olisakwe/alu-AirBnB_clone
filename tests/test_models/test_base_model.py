@@ -1,6 +1,7 @@
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
+from time import sleep
 
 class TestBaseModel(unittest.TestCase):
     def test_attributes(self):
@@ -8,7 +9,7 @@ class TestBaseModel(unittest.TestCase):
         bm = BaseModel()
         self.assertIsInstance(bm.id, str)
         self.assertIsInstance(bm.created_at, datetime)
-        self.assertIsNone(bm.updated_at)
+        self.assertIsInstance(bm.updated_at, datetime)
 
     def test_str(self):
         """Test the __str__ method of the BaseModel class"""
@@ -19,9 +20,10 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """Test the save method of the BaseModel class"""
         bm = BaseModel()
-        old_updated_at = bm.updated_at
+        sleep(0.05)
+        first_updated_at = bm.updated_at
         bm.save()
-        self.assertNotEqual(old_updated_at, bm.updated_at)
+        self.assertLess(first_updated_at, bm.updated_at)
 
 
     def test_to_dict(self):
