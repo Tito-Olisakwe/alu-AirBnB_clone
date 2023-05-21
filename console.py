@@ -26,7 +26,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, User, Place, Review, Amenity, or City saves it, and prints the id"""
+        """Creates a new instance of BaseModel, User, Place, Review, 
+        Amenity, or City saves it, and prints the id"""
         if not arg:
             print("** class name missing **")
         elif arg not in models.classes:
@@ -51,9 +52,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 print(models.storage.all()[key])
-
-
-
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
@@ -82,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print([str(value) for key, value in models.storage.all().items()
-                   if key.split('.')[0] == args[0]]) 
+                   if key.split('.')[0] == args[0]])
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""

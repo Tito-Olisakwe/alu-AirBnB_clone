@@ -4,6 +4,7 @@ from datetime import datetime
 from time import sleep
 import os
 
+
 class TestBaseModel(unittest.TestCase):
     def test_attributes(self):
         """Test the attributes of the BaseModel class"""
@@ -86,7 +87,7 @@ class TestBaseModel_save(unittest.TestCase):
     def test_save_with_arg(self):
         bm = BaseModel()
         with self.assertRaises(TypeError):
-            bm.save(None)
+            bm.save()
 
     def test_save_updates_file(self):
         bm = BaseModel()
