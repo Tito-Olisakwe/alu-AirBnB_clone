@@ -2,6 +2,11 @@
 import json
 import os
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 """This module is responsible for managing the serialization,
@@ -24,7 +29,7 @@ class FileStorage:
         """serializez __objects to the JSON file (path: __file_path)."""
         data = {}
         for key, value in self.__objects.items():
-            if isinstance(value, User):
+            if hasattr(value, "to_dict"):
                 data[key] = value.to_dict()
             else:
                 data[key] = value.__dict__()
@@ -45,6 +50,22 @@ class FileStorage:
                     
                     elif class_name == "User":
                         cls = User
+                    
+                    elif class_name == "Place":
+                        cls = Place
+
+                    elif class_name == "State":
+                        cls = State
+
+                    elif class_name == "City":
+                        cls = City
+                    
+                    elif class_name == "Amenity":
+                        cls = Amenity
+
+                    elif class_name == "Review":
+                        cls = Review
+
                     else:
                         cls = globals()[class_name]
                     obj = cls(**value)
