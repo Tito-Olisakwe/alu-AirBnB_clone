@@ -15,17 +15,18 @@ class BaseModel:
                 if key == '__class__':
                     continue
                 setattr(self, key, value)
-          
+
                 if key in ['created_at', 'updated_at']:
                     # Convert the string value to a datetime object
                     setattr(self, key, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
-   
+
         # If it's a new instance, add a call to the method new(self) on storage
         if not kwargs:
             models.storage.new(self)
 
     def __str__(self):
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        a = "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return a
 
     def save(self):
         self.updated_at = datetime.now()
