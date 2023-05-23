@@ -59,6 +59,7 @@ $
 ```
 
 #### Non-Interactive Mode:
+
 ```
 $ echo "help" | ./console.py
 (hbnb)
