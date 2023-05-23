@@ -141,11 +141,6 @@ class TestBaseModel_save(unittest.TestCase):
         except IOError:
             pass
 
-    def test_save(self):
-        model = BaseModel()
-        time = model.updated_at
-        model.save()
-        self.assertGreater(model.updated_at, time)
 
     def test_one_save(self):
         bm = BaseModel()
