@@ -19,7 +19,7 @@ class BaseModel:
                 if key in ['created_at', 'updated_at']:
                     # Convert the string value to a datetime object
                     setattr(self, key, datetime.strptime(value,
-                        '%Y-%m-%dT%H:%M:%S.%f'))
+                    '%Y-%m-%dT%H:%M:%S.%f'))
 
         # If it's a new instance, add a call to the method new(self) on storage
         if not kwargs:
