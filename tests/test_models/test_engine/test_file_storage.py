@@ -179,6 +179,9 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_reload_with_arg(self):
         self.assertRaises(TypeError, models.storage.reload, None)
+    
+    def test_reload(self):
+        self.assertIsInstance(storage.reload(), dict)
 
 
 
