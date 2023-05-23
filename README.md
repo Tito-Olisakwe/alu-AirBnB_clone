@@ -82,6 +82,6 @@ $
 ```
 
 ---------------
-## Authors
+## Authors 🧑🏿‍🤝‍🧑🏿
 * [Tito-Paris Olisakwe](https://github.com/Tito-Olisakwe)
 * [Ziga Larissa](https://github.com/ZigaLarissa)
