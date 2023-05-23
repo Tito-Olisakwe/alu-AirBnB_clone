@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""This module is responsible for managing the serialization,
+and deserialization of objects to and from a JSON file."""
+
 import json
 import os
 from models.user import User
@@ -9,9 +12,6 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-"""This module is responsible for managing the serialization,
-and deserialization of objects to and from a JSON file."""
-
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
@@ -19,12 +19,12 @@ class FileStorage:
     def all(self):
         """Returns the dictionary __objects."""
         return self.__objects
-    
+
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id."""
         key = obj.__class__.__name__ + '.' + obj.id
         self.__objects[key] = obj
-    
+
     def save(self):
         """serializez __objects to the JSON file (path: __file_path)."""
         data = {}
@@ -47,10 +47,10 @@ class FileStorage:
                     if class_name == "BaseModel":
                         from models.base_model import BaseModel
                         cls = BaseModel
-                    
+
                     elif class_name == "User":
                         cls = User
-                    
+
                     elif class_name == "Place":
                         cls = Place
 
@@ -59,7 +59,7 @@ class FileStorage:
 
                     elif class_name == "City":
                         cls = City
-                    
+
                     elif class_name == "Amenity":
                         cls = Amenity
 
