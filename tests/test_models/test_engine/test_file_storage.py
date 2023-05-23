@@ -179,8 +179,13 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_reload_with_arg(self):
         self.assertRaises(TypeError, models.storage.reload, None)
-    
 
+    def test_reload_empty(self):
+        """ Load from an empty file """
+        with open('file.json', 'w') as f:
+            pass
+        with self.assertRaises(ValueError):
+            models.storage.reload()
 
 
 if __name__ == "__main__":
