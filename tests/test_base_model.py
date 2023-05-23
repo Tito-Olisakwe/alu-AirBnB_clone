@@ -135,14 +135,12 @@ class TestBaseModel_save(unittest.TestCase):
         bm.save()
         self.assertLess(second_updated_at, bm.updated_at)
 
-
     def test_save_updates_file(self):
         bm = BaseModel()
         bm.save()
         bmid = "BaseModel." + bm.id
         with open("file.json", "r") as f:
             self.assertIn(bmid, f.read())
-
 
 class TestBaseModel_to_dict(unittest.TestCase):
     """
@@ -189,8 +187,6 @@ class TestBaseModel_to_dict(unittest.TestCase):
     def test_contrast_to_dict_dunder_dict(self):
         bm = BaseModel()
         self.assertNotEqual(bm.to_dict(), bm.__dict__)
-
-
 
 if __name__ == "__main__":
     unittest.main()
