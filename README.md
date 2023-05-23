@@ -22,22 +22,22 @@ The console will be a tool to validate this storage engine
 
 ### Relevant Files And Directories
 
-* ==models:== directory will contain all classes used for the entire project. A class, called “model” in a OOP * project is the representation of an object/instance.
-* ==tests:== directory will contain all unit tests.
-* ==console.py:== file is the entry point of our command interpreter.
-* ==models/base_model.py:== file is the base class of all our models. It contains common elements: .attributes: id, created_at and updated_at .methods: save() and to_json()
-* ==models/engine:== directory will contain all storage classes (using the same prototype). For the moment you will have only one: file_storage.py.
+* `models:` directory will contain all classes used for the entire project. A class, called “model” in a OOP * project is the representation of an object/instance.
+* `tests:` directory will contain all unit tests.
+* `console.py:` file is the entry point of our command interpreter.
+* `models/base_model.py:` file is the base class of all our models. It contains common elements: .attributes: id, created_at and updated_at .methods: save() and to_json()
+* `models/engine:` directory will contain all storage classes (using the same prototype). For the moment you will have only one: file_storage.py.
 
 
 ### Using The Console
 
-* ==Run the console:== ./console.py
-* ==Quit the console:== (hbnb) quit
-* ==Display the help for a command:== (hbnb) help <command>
-* ==Show an object:== (hbnb) show <class> <id> or (hbnb) <class>.show(<id>)
-* ==Destroy an object:== (hbnb) destroy <class> <id> or (hbnb) <class>.destroy(<id>)
-* ==Show all objects, or all instances of a class:== (hbnb) all or (hbnb) all <class>
-* ==Update an attribute of an object:== (hbnb) update <class> <id> <attribute name> "<attribute value>" or (hbnb) <class>.update(<id>, <attribute name>, "<attribute value>")
+* `Run the console:` ./console.py
+* `Quit the console:` (hbnb) quit
+* `Display the help for a command:` (hbnb) help <command>
+* `Show an object:` (hbnb) show <class> <id> or (hbnb) <class>.show(<id>)
+* `Destroy an object:` (hbnb) destroy <class> <id> or (hbnb) <class>.destroy(<id>)
+* `Show all objects, or all instances of a class:` (hbnb) all or (hbnb) all <class>
+* `Update an attribute of an object:` (hbnb) update <class> <id> <attribute name> "<attribute value>" or (hbnb) <class>.update(<id>, <attribute name>, "<attribute value>")
 
 
 ### Examples 
@@ -49,7 +49,7 @@ $ ./console.py
 (hbnb) help
 
 Documented commands (type help <topic>):
-========================================
+````````````````````
 EOF  help  quit
 
 (hbnb) 
@@ -64,7 +64,7 @@ $ echo "help" | ./console.py
 (hbnb)
 
 Documented commands (type help <topic>):
-========================================
+````````````````````
 EOF  help  quit
 (hbnb) 
 $
@@ -75,7 +75,7 @@ $ cat test_help | ./console.py
 (hbnb)
 
 Documented commands (type help <topic>):
-========================================
+````````````````````
 EOF  help  quit
 (hbnb) 
 $
