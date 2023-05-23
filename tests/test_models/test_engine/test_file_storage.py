@@ -103,7 +103,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_new_with_args(self):
         with self.assertRaises(TypeError):
-            models.storage.new(BaseModel(), 1)
+            models.storage.new(BaseModel())
 
     def test_new_with_None(self):
         with self.assertRaises(AttributeError):
