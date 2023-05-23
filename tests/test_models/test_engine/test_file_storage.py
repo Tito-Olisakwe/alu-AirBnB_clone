@@ -69,7 +69,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_all_with_arg(self):
         with self.assertRaises(TypeError):
-            models.storage.all()
+            models.storage.all(None)
 
     def test_new(self):
         bm = BaseModel()
@@ -103,7 +103,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_new_with_args(self):
         with self.assertRaises(TypeError):
-            models.storage.new(BaseModel())
+            models.storage.new(BaseModel(), 1)
 
     def test_new_with_None(self):
         with self.assertRaises(AttributeError):
@@ -138,7 +138,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_save_with_arg(self):
         with self.assertRaises(TypeError):
-            models.storage.save()
+            models.storage.save(None)
 
     def test_reload(self):
         bm = BaseModel()
@@ -171,7 +171,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_reload_with_arg(self):
         with self.assertRaises(TypeError):
-            models.storage.reload()
+            models.storage.reload(None)
 
 
 if __name__ == "__main__":
