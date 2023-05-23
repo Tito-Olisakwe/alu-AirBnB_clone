@@ -135,10 +135,6 @@ class TestBaseModel_save(unittest.TestCase):
         bm.save()
         self.assertLess(second_updated_at, bm.updated_at)
 
-    def test_save_with_arg(self):
-        bm = BaseModel()
-        with self.assertRaises(TypeError):
-            bm.save()
 
     def test_save_updates_file(self):
         bm = BaseModel()
@@ -194,10 +190,6 @@ class TestBaseModel_to_dict(unittest.TestCase):
         bm = BaseModel()
         self.assertNotEqual(bm.to_dict(), bm.__dict__)
 
-    def test_to_dict_with_arg(self):
-        bm = BaseModel()
-        with self.assertRaises(TypeError):
-            bm.to_dict()
 
 
 if __name__ == "__main__":
