@@ -3,8 +3,9 @@
 HBnB is a comprehensive web application that combines various components such as database storage, a back-end API, and front-end interfacing, all designed to replicate some functionalities of AirBnB.
 Project to be done in teams of 2 people (Larissa Ziga BizimunguBizimungu, Tito-Paris Adaobi Olisakwe).
 
-## Step 1 - The Console 🕹️
 -----------
+
+## Step 1 - The Console 🕹️
 
 ### Description
 
