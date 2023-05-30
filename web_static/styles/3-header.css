@@ -2,5 +2,16 @@ header {
     background-color: white;
     height: 70px;
     width: 100%;
-    border-bottom: 1px #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+    background-image: url("../images/hbnb-logo.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 100px;
 }
